@@ -1,0 +1,7 @@
+.my_team("AXIS", E);
+.concat("cfh(", 1, ", ", 0, ", ", 1, ", ", 50, ")", ContentEb);
+.send_msg_with_conversation_id(E, tell, ContentEb, "CFH");
+.concat("cfa(", 1, ", ", 0, ", ", 1, ", ", 50, ")", ContentEf);
+.send_msg_with_conversation_id(E, tell, ContentEf, "CFA");
+.concat("cfm(", 1, ", ", 0, ", ", 1, ", ", 50, ")", ContentEm);
+.send_msg_with_conversation_id(E, tell, ContentEm, "CFM");
