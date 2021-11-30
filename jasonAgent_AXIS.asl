@@ -76,33 +76,15 @@ patrollingRadius(64).
 					    +aimed_agent(Object);
                         -+aimed("true");
 
-                        +bucleAllied(0);
-                        +foundAllied(0);
-                        
-                        while (foundAllied(Fa) & Fa == 0 & bucleAllied(Xa) & (Xa < Length)) {
-                            .nth(Xa, FOVObjects, ObjectA);
-                            // Object structure
-                            // [#, TEAM, TYPE, ANGLE, DISTANCE, HEALTH, POSITION ]
-                            .nth(2, ObjectA, TypeA);
-                            
-                            if (TypeA > 1000) {
-                                ?debug(Mode); if (Mode<=2) { .println("I found some object."); }
-                            } else {
-                                .nth(1, ObjectA, TeamA);
-                                if (TeamA == 200) {  // Only if I'm ALLIED
-                                    .nth(3, ObjectA, AngleA);
-                                    if (AngleA < 5 & AngleA > -5) {
-                                        -+aimed("false");
-                                        -+foundAllied(1);
-                                    }
-                                }
-                            }
-                            -+bucleAllied(Xa+1);
-                        }
                     }
+                    
                 }
+             
                 -+bucle(X+1);
+                
             }
+                     
+       
         }
 
      -bucle(_).
@@ -164,7 +146,25 @@ patrollingRadius(64).
  * <em> It's very useful to overload this plan. </em>
  *
  */
-+!perform_look_action .
++!perform_look_action 
+    <-  .my_team("ALLIED", E);
+        .concat("cfh(", 1, ", ", 0, ", ", 1, ", ", 50, ")", ContentEb);
+        .send_msg_with_conversation_id(E, tell, ContentEb, "CFH");
+        .concat("cfa(", 1, ", ", 0, ", ", 1, ", ", 50, ")", ContentEf);
+        .send_msg_with_conversation_id(E, tell, ContentEf, "CFA");
+        .concat("cfm(", 1, ", ", 0, ", ", 1, ", ", 50, ")", ContentEm);
+        .send_msg_with_conversation_id(E, tell, ContentEm, "CFM");
+        /*.my_team("backup_AXIS", Eb);
+        .concat("cfh(",1, ", ", 0, ", ", 1, ", ", 100, ")", ContentEb);
+        .send_msg_with_conversation_id(Eb, tell, ContentEb, "CFH");
+        .my_team("fieldops_AXIS", Ef);
+        .concat("cfa(",1, ", ", 0, ", ", 1, ", ", 100, ")", ContentEf);
+        .send_msg_with_conversation_id(Ef, tell, ContentEf, "CFA");
+        .my_team("medic_AXIS", Em);
+        .concat("cfm(",1, ", ", 0, ", ", 1, ", ", 100, ")", ContentEm);
+        .send_msg_with_conversation_id(Em, tell, ContentEm, "CFM");*/
+        
+.
 /// <- ?debug(Mode); if (Mode<=1) { .println("YOUR CODE FOR PERFORM_LOOK_ACTION GOES HERE.") }.
 
 /**
